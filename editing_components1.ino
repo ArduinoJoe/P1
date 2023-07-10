@@ -1,38 +1,40 @@
-int led_red = 7; // the red LED is connected to Pin 0 of the Arduino
-int led_BLUE = 11; // the yellow LED is connected to Pin 1 of the Arduino
-int led_green = 9; // the green LED is connected to Pin 2 of the Arduino
+ // the green LED is connected to Pin 2 of the Arduino
+ int greenLED = 7; // تعيين رقم المنفذ الذي يتم توصيل المصباح الأخضر به
+ int blueLED = 9; // تعيين رقم المنفذ الذي يتم توصيل المصباح الأصفر به
+ int redLED =  11; // تعيين رقم المنفذ الذي يتم توصيل المصباح الأحمر به
 
 void setup() {
-  // set up all the LEDs as OUTPUT
-  pinMode(led_red, OUTPUT);
-  pinMode(led_BLUE, OUTPUT);
-  pinMode(led_green, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+  pinMode(blueLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
 }
 
 void loop() {
-  // turn the green LED on and the other LEDs off
-  digitalWrite(led_red, HIGH); 
-   delay(1000); 
-  
-  
-  digitalWrite(led_green, HIGH);
-   delay(1000);
-  digitalWrite(led_green, LOW);
-   delay(1000);
-  digitalWrite(led_green, HIGH);
-   delay(1000);
-  digitalWrite(led_green, LOW);
-   delay(1000);
-  digitalWrite(led_green, HIGH);
-   delay(1000);
-  digitalWrite(led_green, LOW);
+  // عرض الأضواء الخضراء
+  digitalWrite(greenLED, HIGH);
+  delay(1000);
 
-    delay(1000);
-  digitalWrite(led_red, LOW);
-   delay(1000);
-  digitalWrite(led_BLUE, HIGH);
-   delay(1000);
-  digitalWrite(led_BLUE, LOW);
-  delay(1000);    // wait 2 seconds
-     
+
+
+  // عرض الأضواء الصفراء التومض
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(blueLED, HIGH);
+    delay(500);
+    digitalWrite(blueLED, LOW);
+    delay(500);
+  }
+
+    // إيقاف عرض الأضواء الخضراء
+  digitalWrite(greenLED, LOW);
+  
+  
+  // عرض الأضواء الحمراء
+  digitalWrite(redLED, HIGH);
+  delay(1000);
+
+  // إعادة الدورة
+  digitalWrite(redLED, LOW);
+
+  // تأخير قبل بدء الدورة التالية
+  delay(1000);
 }
